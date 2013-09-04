@@ -1,13 +1,13 @@
+exec = require("child_process").exec
 start = () ->
 	console.log "start wos called"
-	sleep = (milliSeconds) ->
-		startTime = new Date().getTime()
-		i = 0 
-		while new Date().getTime() < startTime + milliSeconds
-			i++
-	sleep(10000)
+	content = "empty"
+	exec("ls -lah",(error,stdout,stderr) ->
+		content = stdout
+		console.log content
+		)	
 
-	return 'hello start'
+	return content
 
 upload = () ->
 	console.log "upload wos called"
