@@ -9,12 +9,17 @@
   start = function(route, handle) {
     var onRequest;
     onRequest = function(request, response) {
-      var pathName;
+      var pathName, postData;
+      postData = null;
       pathName = url.parse(request.url).pathname;
       console.log("Request received");
-      route(handle, pathName, response);
-      return response.writeHead(200, {
-        "Content-Type": "text/plain"
+      request.setEncoding("utf8");
+      request.addListener("data", function(postDataChunk) {
+        postData += postDataChunk;
+        return console.log("Received POST data chunk '" + postDataChunk + "'.");
+      });
+      return request.addListener("end", function() {
+        return route(handle, pathName, response, postData);
       });
     };
     http.createServer(onRequest).listen(8888);
