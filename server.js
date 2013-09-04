@@ -9,15 +9,13 @@
   start = function(route, handle) {
     var onRequest;
     onRequest = function(request, response) {
-      var content, pathName;
+      var pathName;
       pathName = url.parse(request.url).pathname;
       console.log("Request received");
-      content = route(handle, pathName);
-      response.writeHead(200, {
+      route(handle, pathName, response);
+      return response.writeHead(200, {
         "Content-Type": "text/plain"
       });
-      response.write(content);
-      return response.end();
     };
     http.createServer(onRequest).listen(8888);
     return console.log("Listening on port 3000");

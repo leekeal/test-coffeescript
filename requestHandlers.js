@@ -4,20 +4,30 @@
 
   exec = require("child_process").exec;
 
-  start = function() {
+  start = function(response) {
     var content;
     console.log("start wos called");
     content = "empty";
-    exec("ls -lah", function(error, stdout, stderr) {
-      content = stdout;
-      return console.log(content);
+    return exec("find / a", {
+      timeout: 10000,
+      maxBuffer: 20000 * 1024
+    }, function(error, stdout, stderr) {
+      response.writeHead(200, {
+        "Content-Type": "text/plain"
+      });
+      response.write(stdout);
+      return response.end();
     });
-    return content;
   };
 
-  upload = function() {
+  upload = function(response) {
     console.log("upload wos called");
-    return 'hello upload';
+    console.log("Request handler 'upload' was called.");
+    response.writeHead(200, {
+      "Content-Type": "text/plain"
+    });
+    response.write("Hello Upload");
+    return response.end();
   };
 
   exports.start = start;
