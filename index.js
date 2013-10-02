@@ -15,7 +15,7 @@
     "/": requestHandlers.start,
     "/start": requestHandlers.start,
     "/upload": requestHandlers.upload,
-    "/show": requestHandlers.show
+    "/image": requestHandlers.image
   };
 
   server.start(router.route, handle);

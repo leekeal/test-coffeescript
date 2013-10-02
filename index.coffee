@@ -8,7 +8,7 @@ handle =
 	"/": requestHandlers.start
 	"/start": requestHandlers.start
 	"/upload": requestHandlers.upload
-	"/show": requestHandlers.show
+	"/image": requestHandlers.image
 
 # Service start,port is 3000
 server.start(router.route,handle);
