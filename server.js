@@ -11,7 +11,7 @@
     onRequest = function(request, response) {
       var pathName;
       pathName = url.parse(request.url).pathname;
-      console.log("Request for " + pathName + " received.");
+      console.log("" + pathName + "のrequestを受けました");
       return route(handle, pathName, response, request);
     };
     http.createServer(onRequest).listen(3000);

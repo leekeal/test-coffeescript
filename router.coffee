@@ -1,6 +1,5 @@
 ### routeを処理する ###
 exports.route = (handle,pathName,response,request) ->
-		console.log "About to route a request for #{pathName}"
 		#routeを処理する関数が存在することを判断する。
 		if typeof handle[pathName] is 'function'
 			#存在する場合postしたデータとresponseのインスタンスを対応している処理関数を代入				

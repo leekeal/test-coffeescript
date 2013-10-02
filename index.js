@@ -12,9 +12,8 @@
   requestHandlers = require('./requestHandlers');
 
   handle = {
-    "/": requestHandlers.start,
-    "/start": requestHandlers.start,
-    "/upload": requestHandlers.upload,
+    "/": requestHandlers.index,
+    "/bootstrap/css/bootstrap.min.css": requestHandlers.css,
     "/image": requestHandlers.image
   };
 

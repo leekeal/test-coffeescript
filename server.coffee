@@ -5,7 +5,7 @@ exports.start = (route,handle) ->
 
 	onRequest = (request,response) ->
 		pathName = url.parse(request.url).pathname
-		console.log "Request for " + pathName + " received."
+		console.log "#{pathName}のrequestを受けました"
 		route(handle,pathName,response,request)
 
 	# step 1
