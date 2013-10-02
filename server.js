@@ -9,18 +9,10 @@
   exports.start = function(route, handle) {
     var onRequest;
     onRequest = function(request, response) {
-      var pathName, postData;
-      postData = "";
+      var pathName;
       pathName = url.parse(request.url).pathname;
-      console.log("Request received");
-      request.setEncoding("utf8");
-      request.addListener("data", function(postDataChunk) {
-        postData += postDataChunk;
-        return console.log("Received POST data chunk '" + postDataChunk + "'.");
-      });
-      return request.addListener("end", function() {
-        return route(handle, pathName, response, postData);
-      });
+      console.log("Request for " + pathName + " received.");
+      return route(handle, pathName, response, request);
     };
     http.createServer(onRequest).listen(3000);
     return console.log("Listening on port 3000");
